@@ -30,7 +30,7 @@ class StudentResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nis')
+                TextInput::make('nim')
                     ->label('NIM')
                     ->required()
                     ->unique(),

@@ -29,4 +29,8 @@ class Grade extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+    public function gradeTypes()
+    {
+        return $this->belongsTo(GradeType::class, 'grade_type_id');
+    }
 }

@@ -38,14 +38,9 @@ class GradeResource extends Resource
                     ->label('Subject')
                     ->relationship('subject', 'name')
                     ->required(),
-                Select::make('grade_type_id')
+                    Select::make('grade_type_id')
                     ->label('Grade Type')
-                    ->options([
-                        'homework' => 'Homework',
-                        'quiz' => 'Quiz',
-                        'exam' => 'Exam',
-                        'project' => 'Project',
-                    ])
+                    ->relationship('gradeTypes', 'name')
                     ->required(),
                 TextInput::make('score')
                     ->label('Score')
@@ -81,7 +76,7 @@ class GradeResource extends Resource
             ->columns([
                 TextColumn::make('student.name')->label('Student')->sortable()->searchable(),
                 TextColumn::make('subject.name')->label('Subject')->sortable()->searchable(),
-                TextColumn::make('grade_type_id')->label('Grade Type')->sortable(),
+                TextColumn::make('gradeTypes.name')->label('Grade Type')->sortable(),
                 TextColumn::make('score')->label('Score')->sortable(),
                 TextColumn::make('semester')->label('Semester')->sortable(),
                 TextColumn::make('academic_year')->label('Academic Year')->sortable(),
@@ -105,14 +100,9 @@ class GradeResource extends Resource
                         '7'=> 'Semester 7',
                         '8'=> 'Semester 8',
                     ]),
-                SelectFilter::make('grade_type_id')
+                    SelectFilter::make('grade_type_id')
                     ->label('Grade Type')
-                    ->options([
-                        'homework' => 'Homework',
-                        'quiz' => 'Quiz',
-                        'exam' => 'Exam',
-                        'project' => 'Project',
-                    ]),
+                    ->relationship('gradeTypes', 'name'),
             ])
             ->defaultSort('student.name');
     }
